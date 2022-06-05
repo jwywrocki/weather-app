@@ -1,4 +1,4 @@
-![Weather APP](https://github.com/jwywrocki/portfolio/blob/main/img/projects/task_4.png?raw=true)
+![Weather APP](https://github.com/jwywrocki/portfolio/blob/main/img/projects/weather_app?raw=true)
 
 # Weather APP (Work in progress)
 
