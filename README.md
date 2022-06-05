@@ -15,4 +15,4 @@ The goal is to create an application that will retrive weather data from API and
 
 ## Live
 
-You can see it live [here](https://jwywrocki.github.io/task_4/)
+You can see it live [here](https://jwywrocki.github.io/weather-app/)
