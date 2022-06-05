@@ -7,7 +7,7 @@ function App() {
 
     const api = {
         key: '1a154a37d24dfd3c1156aee65de4ab61',
-        base: 'http://api.openweathermap.org/data/2.5/',
+        base: 'https://api.openweathermap.org/data/2.5/',
     };
     const url = `${api.base}weather?q=${location}&appid=${api.key}&units=metric`;
 
