@@ -7,9 +7,9 @@ function App() {
 
     const api = {
         key: '1a154a37d24dfd3c1156aee65de4ab61',
-        base: 'https://api.openweathermap.org/data/2.5/',
+        endpoint: 'https://api.openweathermap.org/data/2.5/weather?q=',
     };
-    const url = `${api.base}weather?q=${location}&appid=${api.key}&units=metric`;
+    const url = `${api.endpoint}${location}&appid=${api.key}&units=metric`;
 
     const searchLocation = (event) => {
         if (event.key === 'Enter') {
@@ -23,43 +23,66 @@ function App() {
 
     return (
         <div className="App">
-            <div className="search">
-                <input
-                    type="text"
-                    value={location}
-                    onChange={(event) => setLocation(event.target.value)}
-                    onKeyPress={searchLocation}
-                    placeholder="Enter location"
-                    className="search"
-                ></input>
-            </div>
-            <div className="container">
-                <div className="top">
-                    <div className="loc">
-                        <h1>{data.name}</h1>
-                    </div>
-                    <div className="temp">
-                        Temperature:
-                        {data.main ? <p>{data.main.temp}°C</p> : null}
-                    </div>
-                    <div className="desc">
-                        Desc:
-                        {data.weather ? <p>{data.weather[0].main}</p> : null}
-                    </div>
+            <div className="glass">
+                <div className="search__container">
+                    <input
+                        type="text"
+                        value={location}
+                        onChange={(event) => setLocation(event.target.value)}
+                        onKeyPress={searchLocation}
+                        placeholder="Enter location"
+                        className="search"
+                    ></input>
                 </div>
-                <div className="bottom">
-                    <div className="pressure">
-                        Pressure:
-                        {data.main ? <p>{data.main.pressure}hPa</p> : null}
-                    </div>
-                    <div className="humidity">
-                        Humidity:
-                        {data.main ? <p>{data.main.humidity}%</p> : null}
-                    </div>
-                    <div className="wind">
-                        Wind speed:
-                        {data.wind ? <p>{data.wind.speed}KM/H</p> : null}
-                    </div>
+                <div className="data__container">
+                    {data.name ? (
+                        <div className="loc horizontal">
+                            <div className="city">
+                                {data.name}, {data.sys.country}
+                            </div>
+                            {data.weather ? (
+                                <div className="icon">
+                                    <img
+                                        src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                                        alt="weather icon"
+                                    ></img>
+                                </div>
+                            ) : null}
+                        </div>
+                    ) : null}
+                    {data.dt ? (
+                        <div className="data">
+                            {new Date(data.dt * 1000).toLocaleDateString(
+                                'en-US',
+                                {
+                                    weekday: 'long',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    year: 'numeric',
+                                }
+                            )}
+                        </div>
+                    ) : null}
+                    {data.main ? (
+                        <div className="data temp">
+                            <span>Temperature: {data.main.temp}°C</span>
+                        </div>
+                    ) : null}
+                    {data.main ? (
+                        <div className="data pressure">
+                            <span>Pressure: {data.main.pressure}hPa</span>
+                        </div>
+                    ) : null}
+                    {data.main ? (
+                        <div className="data humidity">
+                            <span>Humidity: {data.main.humidity}%</span>
+                        </div>
+                    ) : null}
+                    {data.wind ? (
+                        <div className="data wind">
+                            <span>Wind speed: {data.wind.speed}KM/H</span>
+                        </div>
+                    ) : null}
                 </div>
             </div>
         </div>
