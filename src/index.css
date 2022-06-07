@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 :root {
-    --bright: #ffffff;
+    --bright: #f5f5f5;
     --dark: #05090c;
     --backgroundColor: #0b1218;
     --darkerBackgroundColor: #090f14;
@@ -19,7 +19,7 @@
     --gap: 2rem;
 }
 html {
-    font-size: 14px;
+    font-size: 12px;
 }
 .App {
     background: url('/src/img/bg.png') no-repeat center center/cover;
@@ -31,9 +31,10 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: 400;
+    font-family: 'Spartan', sans-serif;
+    font-weight: 600;
     color: var(--dark);
+    gap: var(--gap);
 }
 .glass {
     display: flex;
@@ -53,7 +54,7 @@ html {
     background: inherit;
     inset: 0;
     margin: -20px;
-    box-shadow: inset 0 0 500px #ffffff5c;
+    box-shadow: inset 0 0 500px #ffffff50;
     filter: blur(7px);
     z-index: -1;
 }
@@ -64,7 +65,7 @@ html {
     border: none;
     border-bottom: solid 1px var(--dark);
     color: var(--dark);
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Spartan', sans-serif;
     font-weight: 300;
     font-size: 1.25rem;
     text-align: center;
@@ -74,10 +75,13 @@ html {
     outline: none;
 }
 .search::placeholder {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Spartan', sans-serif;
     font-weight: 300;
     color: var(--dark);
     text-align: center;
+}
+.search:placeholder-shown {
+    text-align: left;
 }
 .data__container {
     display: flex;

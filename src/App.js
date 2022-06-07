@@ -2,25 +2,33 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function App() {
-    const [data, setData] = useState({});
+    const [currWeather, setCurrWeather] = useState({});
+    const [foreWeather, setForeWeather] = useState({});
     const [location, setLocation] = useState('');
 
     const api = {
-        key: '1a154a37d24dfd3c1156aee65de4ab61',
-        endpoint: 'https://api.openweathermap.org/data/2.5/weather?q=',
+        key: process.env.REACT_APP_WEATHER_API_KEY,
+        endpointCurrentWeather:
+            'https://api.openweathermap.org/data/2.5/weather?q=',
+        endpointForecastWeather: `https://api.openweathermap.org/data/2.5/forecast?q=`,
+        icon_e: 'http://openweathermap.org/img/w/',
     };
-    const url = `${api.endpoint}${location}&appid=${api.key}&units=metric`;
+    const urlCurrWeather = `${api.endpointCurrentWeather}${location}&appid=${api.key}&units=metric`;
+    const urlForeWeather = `${api.endpointForecastWeather}${location}&appid=${api.key}&units=metric`;
 
     const searchLocation = (event) => {
         if (event.key === 'Enter') {
-            axios.get(url).then((response) => {
-                setData(response.data);
-                console.log(response.data);
+            axios.get(urlCurrWeather).then((currResp) => {
+                setCurrWeather(currResp.data);
+                console.log('Current Weather: ', currResp.data);
+            });
+            axios.get(urlForeWeather).then((foreResp) => {
+                setForeWeather(foreResp.data);
+                console.log('Forecast Weather: ', foreResp.data);
             });
             setLocation('');
         }
     };
-
     return (
         <div className="App">
             <div className="glass">
@@ -35,24 +43,24 @@ function App() {
                     ></input>
                 </div>
                 <div className="data__container">
-                    {data.name ? (
+                    {currWeather.name ? (
                         <div className="loc horizontal">
                             <div className="city">
-                                {data.name}, {data.sys.country}
+                                {currWeather.name}, {currWeather.sys.country}
                             </div>
-                            {data.weather ? (
+                            {currWeather.weather ? (
                                 <div className="icon">
                                     <img
-                                        src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                                        src={`${api.icon_e}${currWeather.weather[0].icon}.png`}
                                         alt="weather icon"
                                     ></img>
                                 </div>
                             ) : null}
                         </div>
                     ) : null}
-                    {data.dt ? (
+                    {currWeather.dt ? (
                         <div className="data">
-                            {new Date(data.dt * 1000).toLocaleDateString(
+                            {new Date(currWeather.dt * 1000).toLocaleDateString(
                                 'en-US',
                                 {
                                     weekday: 'long',
@@ -63,26 +71,35 @@ function App() {
                             )}
                         </div>
                     ) : null}
-                    {data.main ? (
+                    {currWeather.main ? (
                         <div className="data temp">
-                            <span>Temperature: {data.main.temp}°C</span>
+                            <span>Temperature: {currWeather.main.temp}°C</span>
                         </div>
                     ) : null}
-                    {data.main ? (
+                    {currWeather.main ? (
                         <div className="data pressure">
-                            <span>Pressure: {data.main.pressure}hPa</span>
+                            <span>
+                                Pressure: {currWeather.main.pressure}hPa
+                            </span>
                         </div>
                     ) : null}
-                    {data.main ? (
+                    {currWeather.main ? (
                         <div className="data humidity">
-                            <span>Humidity: {data.main.humidity}%</span>
+                            <span>Humidity: {currWeather.main.humidity}%</span>
                         </div>
                     ) : null}
-                    {data.wind ? (
+                    {currWeather.wind ? (
                         <div className="data wind">
-                            <span>Wind speed: {data.wind.speed}KM/H</span>
+                            <span>
+                                Wind speed: {currWeather.wind.speed}KM/H
+                            </span>
                         </div>
                     ) : null}
+                </div>
+            </div>
+            <div className="glass">
+                <div className="data__container">
+                    Ther will be something more soon :)
                 </div>
             </div>
         </div>
