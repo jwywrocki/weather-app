@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
-import { getCurrentWeather } from './services/getWeather';
+import { getCurrentWeather, getForecastWeather } from './services/getWeather';
+import SearchAndDataContainer from './components/SearchAndDataContainer';
 
 function App() {
     const [currentWeather, setCurrentWeather] = useState({});
-    // const [foreWeather, setForeWeather] = useState({});
+    const [forecastWeather, setForecastWeather] = useState({});
     const [location, setLocation] = useState('');
 
     const api = {
-        key: process.env.REACT_APP_WEATHER_API_KEY,
-        endpointCurrentWeather:
-            'https://api.openweathermap.org/data/2.5/weather?q=',
-        endpointForecastWeather: `https://api.openweathermap.org/data/2.5/forecast?q=`,
-        icon_e: 'http://openweathermap.org/img/w/',
+        icon_e: 'https://openweathermap.org/img/wn/',
     };
-    // const urlCurrWeather = `${api.endpointCurrentWeather}${location}&appid=${api.key}&units=metric`;
-    // const urlForeWeather = `${api.endpointForecastWeather}${location}&appid=${api.key}&units=metric`;
 
     const getWeather = async () => {
         try {
-            const weather = await getCurrentWeather(location);
-            setCurrentWeather(weather.data);
+            const current = await getCurrentWeather(location);
+            const forecast = await getForecastWeather(location);
+            setCurrentWeather(current.data);
+            setForecastWeather(forecast.data);
+            const list = forecast.data.list;
+            list.map((day) => {
+                console.log(day);
+            });
         } catch (error) {
             console.log(error.message);
         }
@@ -32,76 +33,13 @@ function App() {
     };
     return (
         <div className="App">
-            <div className="glass">
-                <div className="search__container">
-                    <input
-                        type="text"
-                        value={location}
-                        onChange={(event) => setLocation(event.target.value)}
-                        onKeyPress={searchLocation}
-                        placeholder="Enter location"
-                        className="search"
-                    ></input>
-                </div>
-                <div className="data__container">
-                    {currentWeather.name ? (
-                        <div className="loc horizontal">
-                            <div className="city">
-                                {currentWeather.name},
-                                {currentWeather.sys.country}
-                            </div>
-                            {currentWeather.weather ? (
-                                <div className="icon">
-                                    <img
-                                        src={`${api.icon_e}${currentWeather.weather[0].icon}.png`}
-                                        alt="weather icon"
-                                    ></img>
-                                </div>
-                            ) : null}
-                        </div>
-                    ) : null}
-                    {currentWeather.dt ? (
-                        <div className="data">
-                            {new Date(
-                                currentWeather.dt * 1000
-                            ).toLocaleDateString('en-US', {
-                                weekday: 'long',
-                                month: 'long',
-                                day: 'numeric',
-                                year: 'numeric',
-                            })}
-                        </div>
-                    ) : null}
-                    {currentWeather.main ? (
-                        <div className="data temp">
-                            <span>
-                                Temperature: {currentWeather.main.temp}°C
-                            </span>
-                        </div>
-                    ) : null}
-                    {currentWeather.main ? (
-                        <div className="data pressure">
-                            <span>
-                                Pressure: {currentWeather.main.pressure}hPa
-                            </span>
-                        </div>
-                    ) : null}
-                    {currentWeather.main ? (
-                        <div className="data humidity">
-                            <span>
-                                Humidity: {currentWeather.main.humidity}%
-                            </span>
-                        </div>
-                    ) : null}
-                    {currentWeather.wind ? (
-                        <div className="data wind">
-                            <span>
-                                Wind speed: {currentWeather.wind.speed}KM/H
-                            </span>
-                        </div>
-                    ) : null}
-                </div>
-            </div>
+            <SearchAndDataContainer
+                value={location}
+                onChange={(event) => setLocation(event.target.value)}
+                onKeyPress={searchLocation}
+                currentWeather={currentWeather}
+                weatherIcon={api.icon_e}
+            />
             <div className="glass">
                 <div className="data__container">
                     Ther will be something more soon :)
