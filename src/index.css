@@ -22,7 +22,7 @@ html {
     font-size: 12px;
 }
 .App {
-    background: url('/src/img/bg.png') no-repeat center center/cover;
+    background: url('/src/assets/img/bg.png') no-repeat center center/cover;
     width: 100%;
     height: 100vh;
     inset: 0 0;
@@ -89,7 +89,7 @@ html {
 }
 .data {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 1rem 0;
 }
 .horizontal {
