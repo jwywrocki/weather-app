@@ -8,6 +8,8 @@
 :root {
     --bright: #f5f5f5;
     --dark: #05090c;
+    --lightFontColor: #f5f5f5;
+    --darkFontColor: #05090c;
     --backgroundColor: #0b1218;
     --darkerBackgroundColor: #090f14;
     --primaryColor: #00efff;
@@ -33,12 +35,14 @@ html {
     align-items: center;
     font-family: 'Spartan', sans-serif;
     font-weight: 600;
-    color: var(--dark);
+    color: var(--darkFontColor);
     gap: var(--gap);
+    overflow: hidden;
 }
 .glass {
     display: flex;
     flex-direction: column;
+    min-width: max-content;
     position: relative;
     padding: var(--gap);
     background: inherit;
@@ -64,7 +68,7 @@ html {
     background: inherit;
     border: none;
     border-bottom: solid 1px var(--dark);
-    color: var(--dark);
+    color: var(--darkFontColor);
     font-family: 'Spartan', sans-serif;
     font-weight: 300;
     font-size: 1.25rem;
@@ -77,7 +81,7 @@ html {
 .search::placeholder {
     font-family: 'Spartan', sans-serif;
     font-weight: 300;
-    color: var(--dark);
+    color: var(--darkFontColor);
     text-align: center;
 }
 .search:placeholder-shown {
@@ -97,6 +101,15 @@ html {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+}
+.horizontalContent {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    padding: var(--gap);
+    gap: var(--gap);
+    color: var(--lightFontColor);
+    overflow-x: scroll;
 }
 .loc {
     font-size: 1.5rem;

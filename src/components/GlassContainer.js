@@ -2,57 +2,59 @@ import React from 'react';
 import { eIcon } from '../constants/global';
 
 export default function GlassContainer(props) {
+    console.log(props);
     return (
         <div className="glass">
             {props.children}
             <div className="data__container">
-                {props.currentWeather.name ? (
-                    <div className="loc horizontal">
+                <div className="loc horizontal">
+                    {props.weather.name ? (
                         <div className="city">
-                            {props.currentWeather.name},{props.currentWeather.sys.country}
+                            {props.weather.name}, {props.weather.sys.country}
                         </div>
-                        {props.currentWeather.weather ? (
-                            <div className="icon">
-                                <img
-                                    src={`${eIcon}${props.currentWeather.weather[0].icon}.png`}
-                                    alt="weather icon"
-                                ></img>
-                            </div>
-                        ) : null}
-                    </div>
-                ) : null}
-                {props.currentWeather.dt ? (
+                    ) : null}
+                    {props.weather.weather ? (
+                        <div className="icon">
+                            <img
+                                src={`${eIcon}${props.weather.weather[0].icon}.png`}
+                                alt="weather icon"
+                            ></img>
+                        </div>
+                    ) : null}
+                </div>
+                {props.weather.dt ? (
                     <div className="data">
-                        {new Date(props.currentWeather.dt * 1000).toLocaleDateString('en-US', {
+                        {new Date(props.weather.dt * 1000).toLocaleDateString('en-GB', {
                             weekday: 'long',
                             month: 'long',
                             day: 'numeric',
                             year: 'numeric',
+                            hour: 'numeric',
                         })}
                     </div>
                 ) : null}
-                {props.currentWeather.main ? (
+                {props.weather.main ? (
                     <div className="data temp">
-                        <span>Temperature: {props.currentWeather.main.temp}°C</span>
+                        <span>Temperature: {props.weather.main.temp}°C</span>
                     </div>
                 ) : null}
-                {props.currentWeather.main ? (
+                {props.weather.main ? (
                     <div className="data pressure">
                         <span>
-                            Pressure: {props.currentWeather.main.pressure}
+                            Pressure: {props.weather.main.pressure}
                             hPa
                         </span>
                     </div>
                 ) : null}
-                {props.currentWeather.main ? (
+                {props.weather.main ? (
                     <div className="data humidity">
-                        <span>Humidity: {props.currentWeather.main.humidity}%</span>
+                        <span>Humidity: {props.weather.main.humidity}%</span>
                     </div>
                 ) : null}
-                {props.currentWeather.wind ? (
+                {props.weather.wind ? (
                     <div className="data wind">
                         <span>
-                            Wind speed: {props.currentWeather.wind.speed}
+                            Wind speed: {props.weather.wind.speed}
                             KM/H
                         </span>
                     </div>
