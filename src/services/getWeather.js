@@ -13,6 +13,7 @@ export const getCurrentWeather = (location, setWeather) => {
         .catch((error) => {
             console.log(error);
         });
+    console.log('Current weather');
 };
 export const getForecastWeather = (location, setWeather) => {
     axios
@@ -23,4 +24,5 @@ export const getForecastWeather = (location, setWeather) => {
         .catch((error) => {
             console.log(error);
         });
+    console.log('Forecast weather');
 };

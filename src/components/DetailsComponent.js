@@ -1,10 +1,9 @@
 import React from 'react';
 import { eIcon } from '../constants/global';
 
-export default function GlassContainer(props) {
-    console.log(props);
+export default function CurrentWeatherComponent(props) {
     return (
-        <div className="glass">
+        <div className="currentWeather">
             {props.children}
             <div className="data__container">
                 <div className="loc horizontal">
