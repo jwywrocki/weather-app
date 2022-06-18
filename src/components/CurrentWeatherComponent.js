@@ -13,13 +13,13 @@ export default function CurrentWeatherSection(props) {
                 ) : null}
                 {props.weather.main ? (
                     <div className="currentWeather__temp">
-                        <span>{Math.round(props.weather.main.temp)}&#x2103;</span>
+                        <span>{Math.round(props.weather.main.temp)}&deg;C</span>
                     </div>
                 ) : null}
                 {props.weather.weather ? (
                     <div className="currentWeather__icon">
                         <img
-                            src={`${eIcon}${props.weather.weather[0].icon}@2x.png`}
+                            src={`${eIcon}${props.weather.weather[0].icon}@4x.png`}
                             alt="weather icon"
                         ></img>
                     </div>
@@ -28,7 +28,7 @@ export default function CurrentWeatherSection(props) {
             <div className="currentWeather__container currentWeather__container--details">
                 {props.weather.main ? (
                     <div className="currentWeather__pressure">
-                        <i class="fa-solid fa-circle-down"></i>
+                        <i className="fa-solid fa-circle-down"></i>
                         <span>
                             {props.weather.main.pressure}
                             hPa
@@ -37,13 +37,13 @@ export default function CurrentWeatherSection(props) {
                 ) : null}
                 {props.weather.main ? (
                     <div className="currentWeather__humidity">
-                        <i class="fa-solid fa-droplet"></i>
+                        <i className="fa-solid fa-droplet"></i>
                         <span>{props.weather.main.humidity}&#x25;</span>
                     </div>
                 ) : null}
                 {props.weather.wind ? (
                     <div className="currentWeather__wind">
-                        <i class="fa-solid fa-wind"></i>
+                        <i className="fa-solid fa-wind"></i>
                         <span>
                             {props.weather.wind.speed}
                             KM/H

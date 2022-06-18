@@ -1,64 +1,39 @@
 import React from 'react';
-import { eIcon } from '../constants/global';
 
-export default function CurrentWeatherComponent(props) {
+export default function DetailsComponent(props) {
     return (
-        <div className="currentWeather">
-            {props.children}
-            <div className="data__container">
-                <div className="loc horizontal">
-                    {props.weather.name ? (
-                        <div className="city">
-                            {props.weather.name}, {props.weather.sys.country}
-                        </div>
-                    ) : null}
-                    {props.weather.weather ? (
-                        <div className="icon">
-                            <img
-                                src={`${eIcon}${props.weather.weather[0].icon}.png`}
-                                alt="weather icon"
-                            ></img>
-                        </div>
-                    ) : null}
-                </div>
-                {props.weather.dt ? (
-                    <div className="data">
-                        {new Date(props.weather.dt * 1000).toLocaleDateString('en-GB', {
-                            weekday: 'long',
-                            month: 'long',
-                            day: 'numeric',
-                            year: 'numeric',
+        <div className="weather-details__container">
+            {props.weather.main ? (
+                <>
+                    <div className="weather-details__feels-like">
+                        Fells like: {props.weather.main.feels_like.toFixed(1)}
+                    </div>
+                    <div className="weather-details__min">
+                        Min: {props.weather.main.temp_min.toFixed(1)}
+                    </div>
+                    <div className="weather-details__max">
+                        Max: {props.weather.main.temp_max.toFixed(1)}
+                    </div>
+                </>
+            ) : null}
+            {props.weather.sys ? (
+                <>
+                    <div className="forecastWeather__sunrise">
+                        Sunrise:{' '}
+                        {new Date(props.weather.sys.sunrise * 1000).toLocaleString('en-GB', {
                             hour: 'numeric',
+                            minute: 'numeric',
                         })}
                     </div>
-                ) : null}
-                {props.weather.main ? (
-                    <div className="data temp">
-                        <span>Temperature: {props.weather.main.temp}°C</span>
+                    <div className="forecastWeather__sunset">
+                        Sunset:{' '}
+                        {new Date(props.weather.sys.sunset * 1000).toLocaleString('en-GB', {
+                            hour: 'numeric',
+                            minute: 'numeric',
+                        })}
                     </div>
-                ) : null}
-                {props.weather.main ? (
-                    <div className="data pressure">
-                        <span>
-                            Pressure: {props.weather.main.pressure}
-                            hPa
-                        </span>
-                    </div>
-                ) : null}
-                {props.weather.main ? (
-                    <div className="data humidity">
-                        <span>Humidity: {props.weather.main.humidity}%</span>
-                    </div>
-                ) : null}
-                {props.weather.wind ? (
-                    <div className="data wind">
-                        <span>
-                            Wind speed: {props.weather.wind.speed}
-                            KM/H
-                        </span>
-                    </div>
-                ) : null}
-            </div>
+                </>
+            ) : null}
         </div>
     );
 }
