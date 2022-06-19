@@ -1,18 +1,15 @@
 import React from 'react';
 import { eIcon } from '../constants/global';
 
-export default function ForecastWeatherSection(props) {
+export const ForecastWeatherComponent = (props) => {
+    let date = new Date(props.weather.dt * 1000).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+    });
     return (
         <div className="forecastWeather__card">
-            {props.weather.dt ? (
-                <div className="forecastWeather__date">
-                    {new Date(props.weather.dt * 1000).toLocaleDateString('en-GB', {
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                    })}
-                </div>
-            ) : null}
+            {props.weather.dt ? <div className="forecastWeather__date">{date}</div> : null}
             {props.weather.weather ? (
                 <div className="forecastWeather__icon">
                     <img
@@ -28,4 +25,4 @@ export default function ForecastWeatherSection(props) {
             ) : null}
         </div>
     );
-}
+};

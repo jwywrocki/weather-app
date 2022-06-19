@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function DetailsComponent(props) {
+export const DetailsComponent = (props) => {
     return (
         <div className="weather-details__container">
             {props.weather.main ? (
@@ -36,4 +36,4 @@ export default function DetailsComponent(props) {
             ) : null}
         </div>
     );
-}
+};

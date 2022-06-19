@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Search(props) {
+export const Search = (props) => {
     return (
         <>
             <input
@@ -13,4 +13,4 @@ export default function Search(props) {
             ></input>
         </>
     );
-}
+};
