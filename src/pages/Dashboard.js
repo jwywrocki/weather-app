@@ -29,7 +29,7 @@ export const Dashboard = () => {
     };
     return (
         <>
-            {console.log('ReRender')}
+            {console.log(currentWeather)}
             <CurrentWeatherComponent weather={currentWeather}>
                 <Search
                     value={location}
@@ -61,12 +61,20 @@ export const Dashboard = () => {
                                     slidesPerView: 5,
                                 },
                                 992: {
-                                    width: 992,
-                                    slidesPerView: 5,
+                                    width: 580,
+                                    slidesPerView: 4,
                                 },
-                                1024: {
-                                    width: 1024,
-                                    slidesPerView: 6,
+                                1200: {
+                                    width: 710,
+                                    slidesPerView: 4,
+                                },
+                                1920: {
+                                    width: 1600,
+                                    slidesPerView: 8,
+                                },
+                                2560: {
+                                    width: 2300,
+                                    slidesPerView: 12,
                                 },
                             }}
                         >
