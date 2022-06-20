@@ -12,8 +12,10 @@ export const getCurrentWeather = (location, setWeather) => {
         })
         .catch((error) => {
             console.log(error);
+        })
+        .finally(() => {
+            console.log('Fetched current weather');
         });
-    console.log('Current weather');
 };
 export const getForecastWeather = (location, setWeather) => {
     axios
@@ -23,6 +25,8 @@ export const getForecastWeather = (location, setWeather) => {
         })
         .catch((error) => {
             console.log(error);
+        })
+        .finally(() => {
+            console.log('Fetched forecast weather');
         });
-    console.log('Forecast weather');
 };

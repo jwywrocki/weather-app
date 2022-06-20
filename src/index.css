@@ -3,7 +3,7 @@
     --dark: #000000;
     --backgroundColor: #323741;
     --darkerBackgroundColor: #22262b;
-    --primaryColor: #ff4b4b;
+    --primaryColor: #e3ae5a;
     --padding: 1rem;
     --gap: 2rem;
     --card-width: 10rem;
@@ -24,7 +24,6 @@ html {
 .App {
     width: 100%;
     min-height: 100vh;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     background: url('/src/assets/img/bg.jpg') no-repeat center center/cover;
@@ -47,8 +46,8 @@ html {
     background: inherit;
     background-attachment: fixed;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 6px 20px rgba(0, 0, 0, 0.35);
-    z-index: 10;
     overflow: hidden;
+    z-index: 10;
 }
 .currentWeather::before,
 .forecastWeather__card::before,
@@ -58,7 +57,7 @@ html {
     background: inherit;
     inset: 0;
     margin: -20px;
-    box-shadow: inset 0 0 500px #ffffff50;
+    box-shadow: inset 0 0 500px #adadad50;
     filter: blur(7px);
     z-index: -1;
 }
@@ -121,6 +120,7 @@ html {
     gap: calc(var(--gap) / 2);
 }
 .weather-details {
+    position: relative;
     width: 100%;
     min-width: 0;
     display: flex;
@@ -157,8 +157,8 @@ html {
     background: inherit;
     background-attachment: fixed;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 6px 20px rgba(0, 0, 0, 0.35);
-    z-index: 0;
     overflow: hidden;
+    z-index: 2;
 }
 .forecastWeather__date {
     font-size: 1.2rem;
@@ -173,9 +173,10 @@ html {
     position: relative;
     width: 100%;
     display: flex;
-    gap: var(--gap);
+    flex-wrap: wrap;
+    justify-content: space-between;
     padding: var(--padding);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     background: inherit;
     background-attachment: fixed;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 6px 20px rgba(0, 0, 0, 0.35);
@@ -188,8 +189,8 @@ html {
 .weather-details__other {
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
     padding: var(--padding);
+    gap: calc(var(--gap) / 2);
     text-align-last: justify;
 }
 .weather-details__temp > i,
@@ -241,7 +242,12 @@ html {
     .currentWeather__icon > img {
         width: 12rem;
     }
+    .weather-details {
+        align-items: center;
+    }
     .weather-details__container {
+        width: fit-content;
         padding: calc(2 * var(--padding));
+        justify-content: flex-start;
     }
 }
