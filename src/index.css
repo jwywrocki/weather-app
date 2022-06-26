@@ -21,18 +21,24 @@ html {
     min-width: 300px;
     font-size: 10px;
 }
-.App {
+.root {
     width: 100%;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     background: url('/src/assets/img/bg.jpg') no-repeat center center/cover;
+    inset: 0 0;
+    z-index: -1;
+}
+.App {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     padding: var(--padding);
     color: var(--light);
     font-family: 'Spartan', sans-serif;
     font-weight: 400;
-    inset: 0 0;
-    z-index: -1;
+    background: inherit;
+    background-attachment: fixed;
 }
 .currentWeather {
     position: relative;
@@ -57,8 +63,8 @@ html {
     background: inherit;
     inset: 0;
     margin: -20px;
-    box-shadow: inset 0 0 500px #adadad50;
-    filter: blur(7px);
+    box-shadow: inset 0 0 500px #00000080;
+    filter: blur(4px);
     z-index: -1;
 }
 .search__input {
@@ -66,13 +72,13 @@ html {
     padding: var(--padding);
     background: initial;
     border: none;
-    border-bottom: solid 1px var(--primaryColor);
+    border-bottom: solid 1px var(--light);
     color: var(--light);
     font-family: 'Spartan', sans-serif;
     font-weight: 300;
     font-size: 1.5rem;
     text-align: center;
-    z-index: 2;
+    z-index: 5;
 }
 .search__input:focus {
     outline: none;
@@ -131,19 +137,25 @@ html {
 }
 .weather-details__controls {
     height: 3rem;
-    z-index: 2;
+    z-index: 10;
 }
 .forecastWeather {
     display: flex;
     background: inherit;
     background-attachment: fixed;
-    height: calc(2rem + var(--card-height));
+    height: calc(5rem + var(--card-height));
     width: 100%;
     max-width: 100%;
     max-height: 100vh;
     min-height: 0;
     min-width: 0;
-    z-index: 2;
+    z-index: 10;
+}
+.swiper {
+    display: flex;
+}
+.swiper-wrapper {
+    align-self: center;
 }
 .forecastWeather__card {
     width: var(--card-width);
@@ -154,11 +166,8 @@ html {
     justify-content: center;
     align-items: center;
     padding: var(--padding);
-    background: inherit;
-    background-attachment: fixed;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 6px 20px rgba(0, 0, 0, 0.35);
     overflow: hidden;
-    z-index: 2;
 }
 .forecastWeather__date {
     font-size: 1.2rem;
@@ -174,14 +183,14 @@ html {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: var(--padding);
     font-size: 1.2rem;
     background: inherit;
     background-attachment: fixed;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 6px 20px rgba(0, 0, 0, 0.35);
     overflow: hidden;
-    z-index: 2;
+    z-index: 10;
 }
 .weather-details__temp,
 .weather-details__sun,
@@ -230,7 +239,12 @@ html {
     html {
         font-size: 14px;
     }
+    .root {
+        justify-content: center;
+    }
     .App {
+        justify-self: center;
+        max-width: 1400px;
         padding: calc(4 * var(--padding));
     }
     .currentWeather {

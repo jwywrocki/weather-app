@@ -1,4 +1,5 @@
 import React from 'react';
+import { windDirection } from '../helpers/windDirection';
 
 export const DetailsComponent = (props) => {
     return (
@@ -52,12 +53,14 @@ export const DetailsComponent = (props) => {
                         </div>
                         <div className="weather-details__wind-direct">
                             <span>Direction </span>
-                            <span>{props.weather.wind.deg}KM/H</span>
+                            <span>{windDirection(props.weather.wind.deg)}</span>
                         </div>
-                        <div className="weather-details__wind-gust">
-                            <span>Gust </span>
-                            <span>{props.weather.wind.gust}KM/H</span>
-                        </div>
+                        {props.weather.wind.gust ? (
+                            <div className="weather-details__wind-gust">
+                                <span>Gust </span>
+                                <span>{props.weather.wind.gust}KM/H</span>
+                            </div>
+                        ) : null}
                     </div>
                     <div className="weather-details__other">
                         <i className="fa-solid fa-cloud"></i>

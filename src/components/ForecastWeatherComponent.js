@@ -14,6 +14,7 @@ export const ForecastWeatherComponent = (props) => {
             {props.weather.list ? (
                 <div className="forecastWeather">
                     <Swiper
+                        autoHeight={true}
                         freeMode={true}
                         breakpoints={{
                             275: {
@@ -40,9 +41,9 @@ export const ForecastWeatherComponent = (props) => {
                                 width: 710,
                                 slidesPerView: 4,
                             },
-                            1920: {
-                                width: 1430,
-                                slidesPerView: 8,
+                            1400: {
+                                width: 940,
+                                slidesPerView: 5,
                             },
                         }}
                     >

@@ -10,6 +10,7 @@ export const Search = (props) => {
                 onKeyPress={props.onKeyPress}
                 placeholder="Enter location"
                 className="search__input"
+                autoFocus
             ></input>
         </>
     );
