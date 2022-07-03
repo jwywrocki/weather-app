@@ -4,6 +4,7 @@ import { CurrentWeatherComponent } from '../components/CurrentWeatherComponent';
 import { ForecastWeatherComponent } from '../components/ForecastWeatherComponent';
 import { DetailsComponent } from '../components/DetailsComponent';
 import { Search } from '../components/Search';
+import { ToggleSwitch } from '../components/ToggleSwitch/ToggleSwitch';
 
 export const Dashboard = () => {
     const [currentWeather, setCurrentWeather] = useState({});
@@ -29,11 +30,15 @@ export const Dashboard = () => {
                     onKeyPress={searchLocation}
                 />
             </CurrentWeatherComponent>
-            <div className="weather-details">
-                <div className="weather-details__controls"></div>
-                <ForecastWeatherComponent location={location} weather={forecastWeather} />
-                <DetailsComponent weather={currentWeather} />
-            </div>
+            {forecastWeather.list ? (
+                <div className="weather-details">
+                    <div className="weather-details__controls">
+                        <ToggleSwitch label="Test" param_1="&deg;C" param_2="&deg;F"></ToggleSwitch>
+                    </div>
+                    <ForecastWeatherComponent location={location} weather={forecastWeather} />
+                    <DetailsComponent weather={currentWeather} />
+                </div>
+            ) : null}
         </>
     );
 };
