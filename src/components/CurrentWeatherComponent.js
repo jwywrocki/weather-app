@@ -1,5 +1,6 @@
 import React from 'react';
 import { eIcon } from '../constants/global';
+import { convertToFahrenheit } from '../helpers/tempConverter';
 
 export const CurrentWeatherComponent = (props) => {
     return (
@@ -11,7 +12,13 @@ export const CurrentWeatherComponent = (props) => {
                         {props.weather.name}, {props.weather.sys.country}
                     </div>
                     <div className="currentWeather__temp">
-                        <span>{Math.round(props.weather.main.temp)}&deg;C</span>
+                        {props.toggle_unit ? (
+                            <span>
+                                {Math.round(convertToFahrenheit(props.weather.main.temp))}&deg;F
+                            </span>
+                        ) : (
+                            <span>{Math.round(props.weather.main.temp)}&deg;C</span>
+                        )}
                     </div>
                     <div className="currentWeather__icon">
                         <img

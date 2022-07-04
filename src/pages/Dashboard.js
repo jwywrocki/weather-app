@@ -10,6 +10,11 @@ export const Dashboard = () => {
     const [currentWeather, setCurrentWeather] = useState({});
     const [forecastWeather, setForecastWeather] = useState({});
     const [location, setLocation] = useState('');
+    const [unit, setUnit] = useState(false);
+
+    const handleChange = () => {
+        setUnit(!unit);
+    };
 
     const getWeather = () => {
         getCurrentWeather(location, setCurrentWeather);
@@ -23,7 +28,7 @@ export const Dashboard = () => {
     };
     return (
         <>
-            <CurrentWeatherComponent weather={currentWeather}>
+            <CurrentWeatherComponent weather={currentWeather} toggle_unit={unit}>
                 <Search
                     value={location}
                     onChange={(event) => setLocation(event.target.value)}
@@ -33,10 +38,20 @@ export const Dashboard = () => {
             {forecastWeather.list ? (
                 <div className="weather-details">
                     <div className="weather-details__controls">
-                        <ToggleSwitch label="Test" param_1="&deg;C" param_2="&deg;F"></ToggleSwitch>
+                        <ToggleSwitch
+                            label="toggle_units"
+                            param_1="&deg;C"
+                            param_2="&deg;F"
+                            toggle_unit={unit}
+                            onChange={handleChange}
+                        ></ToggleSwitch>
                     </div>
-                    <ForecastWeatherComponent location={location} weather={forecastWeather} />
-                    <DetailsComponent weather={currentWeather} />
+                    <ForecastWeatherComponent
+                        location={location}
+                        weather={forecastWeather}
+                        toggle_unit={unit}
+                    />
+                    <DetailsComponent weather={currentWeather} toggle_unit={unit} />
                 </div>
             ) : null}
         </>

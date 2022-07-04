@@ -1,5 +1,5 @@
 export const convertToFahrenheit = (x) => {
-    return convertToCelsius(x) * 1.8 + 32;
+    return x * 1.8 + 32;
 };
 
 export const convertToCelsius = (x) => {

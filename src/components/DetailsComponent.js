@@ -1,5 +1,6 @@
 import React from 'react';
 import { windDirection } from '../helpers/windDirection';
+import { convertToFahrenheit } from '../helpers/tempConverter';
 
 export const DetailsComponent = (props) => {
     return (
@@ -10,15 +11,36 @@ export const DetailsComponent = (props) => {
                         <i className="fa-solid fa-temperature-half"></i>
                         <div className="weather-details__feels-like">
                             <span>Feels like </span>
-                            <span>{props.weather.main.feels_like.toFixed(1)}&deg;C</span>
+                            {props.toggle_unit ? (
+                                <span>
+                                    {convertToFahrenheit(props.weather.main.feels_like).toFixed(1)}
+                                    &deg;F
+                                </span>
+                            ) : (
+                                <span>{props.weather.main.feels_like.toFixed(1)}&deg;C</span>
+                            )}
                         </div>
                         <div className="weather-details__max">
                             <span>Max </span>
-                            <span>{props.weather.main.temp_max.toFixed(1)}&deg;C</span>
+                            {props.toggle_unit ? (
+                                <span>
+                                    {convertToFahrenheit(props.weather.main.temp_max).toFixed(1)}
+                                    &deg;F
+                                </span>
+                            ) : (
+                                <span>{props.weather.main.temp_max.toFixed(1)}&deg;C</span>
+                            )}
                         </div>
                         <div className="weather-details__min">
                             <span>Min </span>
-                            <span>{props.weather.main.temp_min.toFixed(1)}&deg;C</span>
+                            {props.toggle_unit ? (
+                                <span>
+                                    {convertToFahrenheit(props.weather.main.temp_min).toFixed(1)}
+                                    &deg;F
+                                </span>
+                            ) : (
+                                <span>{props.weather.main.temp_min.toFixed(1)}&deg;C</span>
+                            )}
                         </div>
                     </div>
                     <div className="weather-details__sun">

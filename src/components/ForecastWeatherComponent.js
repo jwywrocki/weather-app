@@ -2,6 +2,7 @@ import React from 'react';
 import { eIcon } from '../constants/global';
 import SwiperCore, { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { convertToFahrenheit } from '../helpers/tempConverter';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -64,7 +65,14 @@ export const ForecastWeatherComponent = (props) => {
                                         ></img>
                                     </div>
                                     <div className="forecastWeather__temp">
-                                        <span>{Math.round(value.main.temp)}&deg;C</span>
+                                        {props.toggle_unit ? (
+                                            <span>
+                                                {Math.round(convertToFahrenheit(value.main.temp))}
+                                                &deg;F
+                                            </span>
+                                        ) : (
+                                            <span>{Math.round(value.main.temp)}&deg;C</span>
+                                        )}
                                     </div>
                                 </div>
                             </SwiperSlide>

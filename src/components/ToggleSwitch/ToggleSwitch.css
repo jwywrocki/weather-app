@@ -11,8 +11,9 @@
     width: 100%;
     cursor: pointer;
     border-radius: 20px;
-    background-color: #00000070;
+    background-color: var(--darkerBackgroundColor);
     justify-content: flex-end;
+    box-shadow: 0 3px 10px var(--shadow_param_1), 0 3px 10px var(--shadow_param_2);
 }
 .param_1,
 .param_2 {
@@ -29,11 +30,11 @@
     width: 2rem;
     height: 2rem;
     margin: 0.5rem;
-    background: #ffffff;
+    background-color: var(--light);
     position: absolute;
     right: 0;
     border-radius: 20px;
-    transition: all 0.3s ease-in 0s;
+    transition: all 0.2s ease-in 0s;
 }
 .checkbox:checked + .label .switch {
     right: 3rem;
