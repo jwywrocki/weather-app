@@ -19,31 +19,24 @@ export const ForecastWeatherComponent = (props) => {
                         freeMode={true}
                         breakpoints={{
                             275: {
-                                width: 275,
                                 slidesPerView: 2,
                             },
                             375: {
-                                width: 375,
                                 slidesPerView: 3,
                             },
                             525: {
-                                width: 525,
                                 slidesPerView: 4,
                             },
                             768: {
-                                width: 768,
                                 slidesPerView: 5,
                             },
                             992: {
-                                width: 580,
                                 slidesPerView: 4,
                             },
                             1200: {
-                                width: 710,
                                 slidesPerView: 4,
                             },
                             1400: {
-                                width: 940,
                                 slidesPerView: 5,
                             },
                         }}

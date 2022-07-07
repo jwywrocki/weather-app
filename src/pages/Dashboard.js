@@ -27,7 +27,7 @@ export const Dashboard = () => {
         }
     };
     return (
-        <>
+        <div className="dashboard">
             <CurrentWeatherComponent weather={currentWeather} toggle_unit={unit}>
                 <Search
                     value={location}
@@ -54,6 +54,6 @@ export const Dashboard = () => {
                     <DetailsComponent weather={currentWeather} toggle_unit={unit} />
                 </div>
             ) : null}
-        </>
+        </div>
     );
 };
