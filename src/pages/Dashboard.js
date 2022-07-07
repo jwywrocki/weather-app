@@ -24,6 +24,7 @@ export const Dashboard = () => {
         if (event.key === 'Enter') {
             getWeather();
             setLocation('');
+            event.target.blur();
         }
     };
     return (
