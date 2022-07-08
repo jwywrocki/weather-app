@@ -11,9 +11,18 @@
     width: 100%;
     cursor: pointer;
     border-radius: 20px;
-    background-color: var(--backgroundColor);
     justify-content: flex-end;
     box-shadow: 0 3px 15px var(--shadow_param_1), 0 3px 15px var(--shadow_param_2);
+    overflow: hidden;
+}
+.label::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: -1px;
+    border-radius: 20px;
+    box-shadow: inset 0 -10px 50px var(--backgroundColor);
+    z-index: -1;
 }
 .param_1,
 .param_2 {
