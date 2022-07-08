@@ -4,7 +4,7 @@ import { useWindowDimensions } from './hooks/useWindowDimensions';
 function App() {
     const { height } = useWindowDimensions();
     return (
-        <div className="App" style={{ height: height + 'px' }}>
+        <div className="App" style={{ minHeight: height + 'px' }}>
             <Dashboard />
         </div>
     );

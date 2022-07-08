@@ -23,7 +23,6 @@ html {
 }
 .App {
     display: flex;
-    width: 100vw;
     background: url('/src/assets/img/bg.jpg') no-repeat center center/cover;
     inset: 0 0;
     z-index: -1;
