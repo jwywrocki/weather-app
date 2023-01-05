@@ -3,6 +3,7 @@ import { eCurrent, eForecast } from '../constants/global';
 const api = {
     key: process.env.REACT_APP_WEATHER_API_KEY,
 };
+const FORECAST_COUNT = 10;
 
 export const getCurrentWeather = (location, setWeather) => {
     axios
@@ -19,7 +20,7 @@ export const getCurrentWeather = (location, setWeather) => {
 };
 export const getForecastWeather = (location, setWeather) => {
     axios
-        .get(`${eForecast}${location}&appid=${api.key}&units=metric`)
+        .get(`${eForecast}${location}&appid=${api.key}&units=metric&cnt=${FORECAST_COUNT}`)
         .then((response) => {
             setWeather(response.data);
         })

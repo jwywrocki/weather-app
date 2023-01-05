@@ -47,16 +47,6 @@ export const CurrentWeatherComponent = (props) => {
                             </span>
                         </div>
                     </div>
-                    {/* <div>
-                        {props.weather.name} weather at{' '}
-                        {new Date(
-                            (props.weather.dt + props.weather.timezone - 7200) * 1000
-                        ).toLocaleDateString('en-GB', {
-                            day: 'numeric',
-                            hour: 'numeric',
-                            minute: 'numeric',
-                        })}
-                    </div> */}
                 </div>
             ) : null}
         </div>

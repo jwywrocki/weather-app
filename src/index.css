@@ -1,12 +1,11 @@
 :root {
     --fontColor: #000000;
-    --backgroundColor: #ffffff90;
-    --shadow_param_1: #000000cc;
-    --shadow_param_2: #00000050;
+    --font-size: clamp(8px, 1vw, 1rem);
+    --backgroundColor: #ffffff69;
+    --darkerBackgroundColor: #0c141d;
+    --shadow_param_1: #0000002e;
     --padding: 1rem;
     --gap: 1rem;
-    --card-width: 10rem;
-    --card-height: 12rem;
 }
 *,
 *::before,
@@ -18,17 +17,20 @@
 html {
     scroll-behavior: smooth;
     min-width: 300px;
-    font-size: 10px;
+    font-size: 8px;
 }
 .App {
     display: flex;
-    background: #009eb7 url('/src/assets/img/bg.jpg') no-repeat fixed center / cover;
+    justify-content: center;
+    background: #009eb7 url('/src/assets/images/bg.jpg') no-repeat fixed center / cover;
+    background-color: var(--darkerBackgroundColor);
+    overflow: hidden;
     z-index: -1;
 }
 .dashboard {
-    width: 100%;
     display: flex;
     flex-direction: column;
+    gap: calc(2 * var(--gap));
     padding: var(--padding);
     background: inherit;
     background-attachment: fixed;
@@ -44,27 +46,28 @@ html {
     flex-direction: column;
     align-items: center;
     padding: calc(2 * var(--padding));
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--font-size));
     background: inherit;
     background-attachment: fixed;
-    box-shadow: 0 6px 20px var(--shadow_param_1), 0 6px 20px var(--shadow_param_2);
+    box-shadow: 0 5px 15px 5px var(--shadow_param_1);
     border-radius: 10px;
     overflow: hidden;
     z-index: 10;
 }
 .currentWeather::before,
 .weather-details__container::before,
-.forecastWeather__card::before {
+.forecastWeather__container::before {
     content: '';
     position: absolute;
     inset: 0;
     margin: -1px;
     background: inherit;
-    filter: blur(4px);
+    filter: blur(5px);
     z-index: -1;
+    box-shadow: inset 0 0 100px var(--backgroundColor);
 }
 .currentWeather::before {
-    box-shadow: inset 0 -100px 300px var(--backgroundColor);
+    box-shadow: inset 0 0 200px var(--backgroundColor);
 }
 
 .search__input {
@@ -76,7 +79,7 @@ html {
     color: var(--fontColor);
     font-family: 'Spartan', sans-serif;
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--font-size));
     text-align: center;
     z-index: 5;
 }
@@ -101,10 +104,10 @@ html {
     padding: calc(2 * var(--padding));
 }
 .currentWeather__city {
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--font-size));
 }
 .currentWeather__temp {
-    font-size: 3rem;
+    font-size: calc(3 * var(--font-size));
 }
 .currentWeather__icon > img {
     display: flex;
@@ -122,7 +125,7 @@ html {
 .currentWeather__wind {
     display: flex;
     flex-direction: row;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--font-size));
     gap: calc(var(--gap) / 2);
 }
 .weather-details {
@@ -130,15 +133,14 @@ html {
     width: 100%;
     min-width: 0;
     display: flex;
-    flex: 1;
     flex-direction: column;
+    gap: calc(2 * var(--gap));
     background: inherit;
     background-attachment: fixed;
 }
 
 .weather-details__controls {
     display: flex;
-    height: 5rem;
     width: 100%;
     align-items: flex-end;
     justify-content: flex-end;
@@ -156,36 +158,35 @@ html {
     min-height: 0;
     min-width: 0;
 }
-.swiper {
-    display: flex;
-    padding: 2rem 0 2rem 2rem !important;
-}
-.forecastWeather__card {
+.forecastWeather__container {
     position: relative;
-    width: var(--card-width);
-    height: var(--card-height);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(40px, 80px));
+    gap: calc(2 * var(--gap));
     padding: var(--padding);
+    font-size: calc(1.2 * var(--font-size));
     background: inherit;
     background-attachment: fixed;
     border-radius: 10px;
-    box-shadow: 0 6px 20px var(--shadow_param_1), 0 6px 20px var(--shadow_param_2);
+    box-shadow: 0 5px 15px 5px var(--shadow_param_1);
     overflow: hidden;
+    z-index: 10;
 }
-.forecastWeather__card::before {
-    box-shadow: inset 0 -10px 100px var(--backgroundColor);
+.forecastWeather__container::before {
+    box-shadow: inset 0 0 200px var(--backgroundColor);
+}
+.forecastWeather__item {
+    text-align: center;
 }
 .forecastWeather__date {
-    font-size: 1.2rem;
+    font-size: calc(1.2 * var(--font-size));
 }
 .forecastWeather__icon > img {
     width: 6rem;
 }
 .forecastWeather__temp {
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--font-size));
 }
 .weather-details__container {
     position: relative;
@@ -194,16 +195,16 @@ html {
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: var(--padding);
-    font-size: 1.2rem;
+    font-size: calc(1.2 * var(--font-size));
     background: inherit;
     background-attachment: fixed;
     border-radius: 10px;
-    box-shadow: 0 6px 20px var(--shadow_param_1), 0 6px 20px var(--shadow_param_2);
+    box-shadow: 0 5px 15px 5px var(--shadow_param_1);
     overflow: hidden;
     z-index: 10;
 }
 .weather-details__container::before {
-    box-shadow: inset 0 -50px 300px var(--backgroundColor);
+    box-shadow: inset 0 0 100px var(--backgroundColor);
 }
 .weather-details__temp,
 .weather-details__sun,
@@ -241,24 +242,21 @@ html {
         min-width: 25rem;
         max-width: 25rem;
         padding: calc(2 * var(--padding));
+        margin-top: 5rem;
         gap: calc(2 * var(--gap));
     }
-    .currentWeather__container {
+    .forecastWeather__container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .currentWeather__container, 
+    .forecastWeather__container,
+    .weather-details__container {
         padding: calc(2 * var(--padding));
-    }
-    .weather-details {
-        padding-left: 2rem;
-    }
-    .weather-details__controls {
-        height: auto;
     }
 }
 @media (min-width: 1200px) {
     html {
         font-size: 13px;
-    }
-    .App {
-        justify-content: center;
     }
     .dashboard {
         justify-self: center;
@@ -268,7 +266,9 @@ html {
     .currentWeather {
         padding: 4rem 2rem;
     }
-    .currentWeather__container {
+    .currentWeather__container, 
+    .forecastWeather__container,
+    .weather-details__container {
         padding: calc(2 * var(--padding));
     }
     .currentWeather__icon > img {
@@ -276,9 +276,5 @@ html {
     }
     .weather-details {
         align-items: center;
-    }
-    .weather-details__container {
-        padding: calc(2 * var(--padding)) calc(4 * var(--padding));
-        justify-content: space-between;
     }
 }
